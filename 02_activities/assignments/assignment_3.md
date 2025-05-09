@@ -7,13 +7,14 @@
 - Choose a dataset of interest from the [City of Toronto’s Open Data Portal](https://www.toronto.ca/city-government/data-research-maps/open-data/) or [Ontario’s Open Data Catalogue](https://data.ontario.ca/). 
 - Using Python and one other data visualization software (Excel or free alternative, Tableau Public, any other tool you prefer), create two distinct visualizations from your dataset of choice.  
 ![alt text](image.png)
+![alt text](image-1.png)
 - For each visualization, describe and justify: 
     > What software did you use to create your data visualization?
 I used python to plot the heatmap. 
     > Who is your intended audience? 
     My intended audience is researchers 
     > What information or message are you trying to convey with your visualization? 
-    I would like to find correlation analysis between different datasets. 
+   I aim to perform a correlation analysis to explore relationships between different features in the dataset.  
     > What aspects of design did you consider when making your visualization? How did you apply them? With what elements of your plots? 
     I ensured my visualization was easy to interpret by selecting appropriate colors, labels, and a clean layout. I applied this by using a high-contrast color( yellow and purple) scheme and ensuring text elements were legible without cluttering the plot. I considered colorblind-friendly palettes and readable fonts to ensure that the visualization was inclusive for all audiences. I used a heatmap to compare correlation between differernt features. I balanced spacing and proportions so that key patterns and relationships in the data were visible.
 
@@ -32,8 +33,11 @@ I used python to plot the heatmap.
     
     
     > How did you choose which features of your chosen dataset to include or exclude from your visualization? 
-    Before I visuliaxe the data set I print the features to find the categorical and numericla data. I realized that most of the featues are numeric so I was curius if there is any correlation between different featues of the dataset. Two coloumns of the dataset were similar with different units which were basically the same.  I decided to choose three features which were 
+     Before visualizing the dataset, I printed the features to identify which ones were categorical and which were numerical. I observed that most features were numerical, which led me to explore potential correlations among them. I also noticed that two columns represented essentially the same data but in different units. To analyze meaningful relationships, I selected three features: Harvested Area (ft²), Production (tonnes), and Price ($/tonne), and proceeded to visualize the correlations between them.
+
     > What ‘underwater labour’ contributed to your final data visualization product?
+
+     I conducted exploratory data analysis to identify variable types and understand their distributions. This included data cleaning tasks such as removing commas from numerical values and renaming feature titles to eliminate excessive spacing. I then performed correlation analysis to identify and select the most relevant features—Harvested Area, Production, and Price—and created a new DataFrame containing only these variables. Finally, I dedicated significant effort to formatting the visualization for clarity, including setting axis labels, applying appropriate color schemes, and adjusting scales to enhance interpretability.
 
 - This assignment is intentionally open-ended - you are free to create static or dynamic data visualizations, maps, or whatever form of data visualization you think best communicates your information to your audience of choice! 
 - Total word count should not exceed **(as a maximum) 1000 words** 
