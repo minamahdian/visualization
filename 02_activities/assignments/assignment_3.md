@@ -8,8 +8,15 @@
 - Using Python and one other data visualization software (Excel or free alternative, Tableau Public, any other tool you prefer), create two distinct visualizations from your dataset of choice.  
 The data source: https://data.ontario.ca/dataset/aggregated-ontario-greenhouse-vegetable-production/resource/ab6ecf23-e711-48c8-ba61-5cae07a3dc3f.
 ![alt text](image.png)
+Figure 1:The correlation between different featues of the dataset. 
+
 ![alt text](image-1.png)
+Firgure 2: The correlation of Harvested area, price and production in Ontario.
+
+
 ![alt text](image-2.png)
+Figures 3: The Change in harvested area and vegtabel area from 1994-2024 in Ontario. 
+This plot shows the harvested area and price of vegetables in Ontario from 1994 to 2024. Data for harvested area is unavailable from 1994 to 2006, but from 2007 onward, there has been a general increase in harvested area. Vegetable prices peaked in 1995 and 1999, while 2009 recorded the lowest price during the observed period.
 
 - For each visualization, describe and justify: 
     > What software did you use to create your data visualization?
@@ -41,6 +48,62 @@ I used python to plot the heatmap.
     > What ‘underwater labour’ contributed to your final data visualization product?
 
      I conducted exploratory data analysis to identify variable types and understand their distributions. This included data cleaning tasks such as removing commas from numerical values and renaming feature titles to eliminate excessive spacing. I then performed correlation analysis to identify and select the most relevant features—Harvested Area, Production, and Price—and created a new DataFrame containing only these variables. Finally, I dedicated significant effort to formatting the visualization for clarity, including setting axis labels, applying appropriate color schemes, and adjusting scales to enhance interpretability.
+
+Appendix (Python code)
+
+import pandas as pd
+
+# If the file is in the same folder:
+df = pd.read_csv("/Users/minamahdian/Desktop/Documents/DSI folder /visualization/data1.csv")
+
+# Show the first few rows
+df.head()
+
+# Import libraries
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Assuming 'df' is your DataFrame
+
+# Clean data set: Replace commas in numeric columns and convert to numeric
+for column in df.columns:
+    # Check if the column dtype is object (likely string) before applying .str
+    if df[column].dtype == object:
+        df[column] = pd.to_numeric(df[column].str.replace(',', ''), errors='coerce')
+    else:
+        # If not an object dtype, try converting directly to numeric
+        df[column] = pd.to_numeric(df[column], errors='coerce')
+
+# Calculate the correlation matrix
+correlation_matrix = df.corr()
+
+# Create the heatmap
+plt.figure(figsize=(10, 8))
+sns.heatmap(correlation_matrix, cmap='coolwarm')
+plt.show()
+
+# Create an annotated heatmap
+plt.figure(figsize = (10,8))
+plt.rcParams.update({'font.size': 12})
+sns.heatmap(correlation_matrix, cmap = 'viridis', vmin = -1, vmax = 1, center = 0, annot=True, fmt=".2f", square=True, linewidths=.5)
+plt.show()
+
+# Edit the name of the coloumn 
+
+df.rename(columns={"Harvested     Area       (square feet)": "HarvestedArea(ft2)", "Production (tonnes)": "Production (tonnes)","Average  Price         ($/tonne)":"Price($/tonne)","Harvested     Area       (acres)":"Harvested area (acres)"}, inplace=True)
+
+
+
+
+
+
+
+
+
+
+
 
 - This assignment is intentionally open-ended - you are free to create static or dynamic data visualizations, maps, or whatever form of data visualization you think best communicates your information to your audience of choice! 
 - Total word count should not exceed **(as a maximum) 1000 words** 
