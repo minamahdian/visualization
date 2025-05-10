@@ -20,11 +20,11 @@ This plot shows the harvested area and price of vegetables in Ontario from 1994 
 
 - For each visualization, describe and justify: 
     > What software did you use to create your data visualization?
-I used python to plot the heatmap. 
+I used python for visulization. 
     > Who is your intended audience? 
-    My intended audience is researchers 
+    My intended audience is researchers.
     > What information or message are you trying to convey with your visualization? 
-   I aim to perform a correlation analysis to explore relationships between different features in the dataset.  
+   I aim to perform a correlation analysis to explore relationships between different features in the dataset.  I also would like to see the trend of the data during the past twenty years. 
     > What aspects of design did you consider when making your visualization? How did you apply them? With what elements of your plots? 
     I ensured my visualization was easy to interpret by selecting appropriate colors, labels, and a clean layout. I applied this by using a high-contrast color( yellow and purple) scheme and ensuring text elements were legible without cluttering the plot. I considered colorblind-friendly palettes and readable fonts to ensure that the visualization was inclusive for all audiences. I used a heatmap to compare correlation between differernt features. I balanced spacing and proportions so that key patterns and relationships in the data were visible.
 
@@ -84,7 +84,7 @@ plt.figure(figsize=(10, 8))
 sns.heatmap(correlation_matrix, cmap='coolwarm')
 plt.show()
 
-# Create an annotated heatmap
+# Figure 1: Create an annotated heatmap
 plt.figure(figsize = (10,8))
 plt.rcParams.update({'font.size': 12})
 sns.heatmap(correlation_matrix, cmap = 'viridis', vmin = -1, vmax = 1, center = 0, annot=True, fmt=".2f", square=True, linewidths=.5)
@@ -94,14 +94,42 @@ plt.show()
 
 df.rename(columns={"Harvested     Area       (square feet)": "HarvestedArea(ft2)", "Production (tonnes)": "Production (tonnes)","Average  Price         ($/tonne)":"Price($/tonne)","Harvested     Area       (acres)":"Harvested area (acres)"}, inplace=True)
 
+# Figure 2: visulize Harvested area, Production(tonnes), and Average Price ($/tonne)
+# Create a new dataset with selected columns
+df1 = df[["HarvestedArea(ft2)", "Production (tonnes)", "Price($/tonne)"]]
 
+# View the new DataFrame
+df1.head()
 
+# Figure 3: Visulize the chang in price and harvested area in Ontario from (1994-2024)
+df2 = df[[ "Year","HarvestedArea(ft2)", "Price($/tonne)"]]
 
+# View the new DataFrame
+df2.head()
 
+import matplotlib.pyplot as plt
+import pandas as pd
 
+fig, ax1 = plt.subplots()
 
+# Bar plot (left y-axis)
+ax1.bar(df2['Year'], df2['HarvestedArea(ft2)'], color='skyblue', label='HarvestedArea')
+ax1.set_ylabel('HarvestedArea(ft2)')
+ax1.set_xlabel('Year')
 
+# Second y-axis
+ax2 = ax1.twinx()
 
+# Scatter plot (right y-axis)
+ax2.plot(df2['Year'], df2['Price($/tonne)'], 'o-', color='red', label='Price')
+ax2.set_ylabel('Price($/tonne)')
+
+# Optional: Add legends
+ax1.legend(loc='upper left')
+ax2.legend(loc='upper right')
+
+plt.title('Change in harvested area (ft2) and Product price ($/tonne) from 1994-2024 in Ontario')
+plt.show()
 
 
 
