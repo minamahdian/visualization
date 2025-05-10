@@ -1,1 +1,3 @@
 hello 👋
+conda activate dsi_participant
+conda install wordcloud
